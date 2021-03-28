@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Emoji';
+    /*src: url('../fonts/seguiemj.eot');*/
+    /*src: url('../fonts/seguiemj.eot?#iefix') format('embedded-opentype'),*/
+    src:  url('../fonts/seguiemj.ttf') format('truetype');
+}
+body {
+    font-family: 'Segoe UI Emoji', 'Emoji', Tahoma, Geneva, 'Simsun';
+}
+input, button, textatea, select {
+    font-family: 'Segoe UI Emoji', 'Emoji', Tahoma, Geneva, 'Simsun';
+}
+html:root {
+    body {
+        font-family: Tahoma, Geneva, 'Microsoft Yahei', 'Simsun', 'Segoe UI Emoji', 'Emoji';
+    }
+    input, button, textarea, select {
+        font-family: Tahoma, Geneva, 'Microsoft Yahei', 'Simsun', 'Segoe UI Emoji', 'Emoji';
+    }
+}

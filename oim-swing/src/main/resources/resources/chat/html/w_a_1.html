@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>write</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/emoji.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript">
+            function insertHtmlAtCaret(html) {
+                var selection, range;
+                if (window.getSelection) {
+// IE9 and non-IE
+                    selection = window.getSelection();
+                    if (selection.getRangeAt && selection.rangeCount) {
+                        range = selection.getRangeAt(0);
+                        range.deleteContents();
+// Range.createContextualFragment() would be useful here but is
+// non-standard and not supported in all browsers (IE9, for one)
+                        var element = document.createElement("div");
+                        element.innerHTML = html;
+                        var frag = document.createDocumentFragment(), node, lastNode;
+                        while ((node = element.firstChild)) {
+                            lastNode = frag.appendChild(node);
+                        }
+                        range.insertNode(frag);
+
+                        if (lastNode) {// Preserve the selection
+                            range = range.cloneRange();
+                            range.setStartAfter(lastNode);
+                            range.collapse(true);
+                            selection.remorangeveAllRanges();
+                            selection.addRange(range);
+                        }
+                    }
+                } else if (document.selection && document.selection.type != "Control") {
+// IE < 9
+                    document.selection.createRange().pasteHTML(html);
+                }
+            }
+            function insertHtmlAtCursor(html) {
+                var range, node;
+                var hasSelection = window.getSelection;
+                var selection = window.getSelection();
+                if (hasSelection && selection.rangeCount > 0 && selection.getRangeAt) {
+                    range = window.getSelection().getRangeAt(0);
+
+                    var element = document.createElement('div');
+                    element.innerHTML = html;
+                    var nodes = element.childNodes;
+                    var l = nodes.length;
+                    for (var i = 0; i < l; i++) {
+                        node = nodes[i];
+                        range.insertNode(node);
+                    }
+                    //node = range.createContextualFragment(html);
+                    //range.insertNode(node);
+                    range.setStartAfter(node);
+                    //range = range.cloneRange();
+                    // range.setStartAfter(node);
+                    // range.collapse(true);
+                    // selection.remorangeveAllRanges();
+                    // selection.addRange(range);
+                } else if (document.selection && document.selection.createRange) {
+                    document.selection.createRange().pasteHTML(html);
+                } else {
+                    var element = document.createElement('div');
+                    element.innerHTML = html;
+                    node = element.childNodes[0];
+                    document.body.appendChild(node);
+                }
+            }
+            // insertHtmlAtCursor('hhh');
+
+        </script>
+    </head>
+    <body contenteditable="true" style="word-wrap:break-word;font-family:TimesRoman;font-size:12px;margin-top:0;color:#000000;">
+        <input onclick="insertHtmlAtCursor('《》');" type="button" value="in"/>
+    </body>
+</html>
